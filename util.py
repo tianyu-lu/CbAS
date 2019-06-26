@@ -284,7 +284,7 @@ def partition_data(X, y, percentile=40, train_size=1000, random_state=1, return_
 def get_experimental_X_y(random_state=1, train_size=150, return_test=False, return_all=False):
     """Partition and add noise"""
     df = pd.read_csv('data/PETase_mutations_1.csv')
-    X,_ = get_gfp_X_y_aa(df, large_only=True, ignore_stops=True)
+    X,_ = get_gfp_X_y_aa(df, large_only=False, ignore_stops=True)
     y_gt = np.array(df["medianBrightness"])
     if return_test:
         X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=80, train_size=train_size, random_state=random_state, return_test=return_test)
