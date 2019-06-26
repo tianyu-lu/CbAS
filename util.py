@@ -276,11 +276,11 @@ def partition_data(X, y, percentile=40, train_size=1000, random_state=1, return_
     else:
         return X_train, y_train
 
-def get_experimental_X_y(random_state=1, train_size=5000, return_test=False, return_all=False):
+def get_experimental_X_y(random_state=1, train_size=167, return_test=False, return_all=False):
     """Partition and add noise"""
-    df = pd.read_csv('data/gfp_data.csv')
+    df = pd.read_csv('data/PETase_mutations_1.csv')
     X,_ = get_gfp_X_y_aa(df, large_only=True, ignore_stops=True)
-    y_gt = np.load("data/gfp_gt_evals.npy")
+    y_gt = np.array(df["medianBrightness"])
     if return_test:
         X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=20, train_size=train_size, random_state=random_state, return_test=return_test)
         np.random.seed(random_state)
