@@ -12,7 +12,11 @@ from seqtools import SequenceTools
 from vae import SimpleSupervisedVAE, SimpleVAE
 
 
-AA = ['a', 'r', 'n', 'd', 'c', 'q', 'e', 'g', 'h', 'i', 'l', 'k', 'm', 'f', 'p', 's', 't', 'w', 'y', 'v']
+AA_lower = ['a', 'r', 'n', 'd', 'c', 'q', 'e', 'g', 'h', 'i', 'l', 'k', 'm', 'f', 'p', 's', 't', 'w', 'y', 'v', 'x']
+AA_upper = []
+for m_aa in AA:
+  AA_upper.append(m_aa.upper())
+  
 AA_IDX = {AA[i]:i for i in range(len(AA))}
 
 BLOSUM = np.array([
@@ -64,7 +68,7 @@ def build_pred_vae_model(latent_dim, n_tokens=4, seq_length=33, enc1_units=50,
 
     # set predictor layers:
     model.predictorLayers_ = [
-        Dense(units=20, activation='elu', name='p1'),
+        Dense(units=21, activation='elu', name='p1'),
     ]
 
     # build models:
