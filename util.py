@@ -331,7 +331,16 @@ def get_gfp_X_y_aa(data_df, large_only=False, ignore_stops=True, return_str=Fals
         idx = data_df.loc[~data_df['aaSequence'].str.contains('!')].index
     data_df = data_df.loc[idx]
     seqs = data_df['aaSequence']
-        
+    
+    # Padding sequences to the same length
+    max_length = 0
+    for s in seqs:
+      if len(s) > max_length:
+        max_length = len(s)
+    for i in range(len(seqs)):
+      if len(seqs[i]) < max_length:
+        seqs[i] = seqs[i] + ("X" * (max_length - len(seqs[i])))
+      
     M = len(seqs[0])
     N = len(seqs)
     X = np.zeros((N, M, 20))
