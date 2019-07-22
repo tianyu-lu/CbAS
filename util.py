@@ -339,7 +339,8 @@ def get_gfp_X_y_aa(data_df, large_only=False, ignore_stops=True, return_str=Fals
         max_length = len(s)
     for i in range(len(seqs)):
       if len(seqs[i]) < max_length:
-        print("padding")
+        if i % 1000 == 0:
+          print(i/len(seqs), " % of padding complete")
         seqs[i] = str(seqs[i]) + ("X" * (max_length - len(seqs[i])))
       
     M = len(seqs[0])
