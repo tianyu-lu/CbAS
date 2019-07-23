@@ -266,7 +266,7 @@ def get_balaji_predictions(preds, Xt):
 def partition_data(X, y, percentile=40, train_size=1000, random_state=1, return_test=False):
     np.random.seed(random_state)
     assert (percentile*0.01 * len(y) >= train_size)
-    y_percentile = np.percentile(y, percentile)
+    y_percentile = np.nanpercentile(y, percentile)
     idx = np.where(y < y_percentile)[0]  # y < y_percentile
     print("y:")
     print(y)
