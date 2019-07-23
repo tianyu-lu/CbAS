@@ -287,7 +287,7 @@ def partition_data(X, y, percentile=40, train_size=1000, random_state=1, return_
 
 def get_experimental_X_y_PET(random_state=1, train_size=150, return_test=False, return_all=False):
     """Partition and add noise"""
-    df = pd.read_csv('data/PETase_mutations_1.csv')
+    df = pd.read_csv('data/PETase_mutations_1_padded.csv')
     X,_ = get_gfp_X_y_aa(df, large_only=False, ignore_stops=True)
     y_gt = np.array(df["medianBrightness"])
     if return_test:
@@ -306,7 +306,7 @@ def get_experimental_X_y_PET(random_state=1, train_size=150, return_test=False, 
       
 def get_experimental_X_y_Hydrolase(random_state=1, train_size=150, return_test=False, return_all=False):
     """Partition and add noise"""
-    df = pd.read_csv('data/hydrolase.csv')
+    df = pd.read_csv('data/hydrolase_padded.csv')
     X,_ = get_gfp_X_y_aa(df, large_only=False, ignore_stops=True)
     y_gt = np.array(df["medianBrightness"])
     if return_test:
@@ -335,17 +335,6 @@ def get_gfp_X_y_aa(data_df, large_only=False, ignore_stops=True, return_str=Fals
         idx = data_df.loc[~data_df['aaSequence'].str.contains('!')].index
     data_df = data_df.loc[idx]
     seqs = data_df['aaSequence']
-    
-    # Padding sequences to the same length
-    max_length = 0
-    for s in seqs:
-      if len(s) > max_length:
-        max_length = len(s)
-    for i in range(len(seqs)):
-      if len(seqs[i]) < max_length:
-        if i % 1000 == 0:
-          print(i/len(seqs), " % of padding complete")
-        seqs[i] = str(seqs[i]) + ("X" * (max_length - len(seqs[i])))
       
     M = len(seqs[0])
     N = len(seqs)
