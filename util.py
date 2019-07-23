@@ -205,7 +205,7 @@ def one_hot_encode_dna(dna_str, pad=None, base_order='ATCG'):
 
 def one_hot_encode_aa(aa_str, pad=None):
     M = len(aa_str)
-    aa_arr = np.zeros((M, 20), dtype=int)
+    aa_arr = np.zeros((M, 21), dtype=int)
     for i in range(M):
         aa_arr[i, AA_IDX[aa_str[i].upper()]] = 1
     return aa_arr
@@ -349,7 +349,7 @@ def get_gfp_X_y_aa(data_df, large_only=False, ignore_stops=True, return_str=Fals
       
     M = len(seqs[0])
     N = len(seqs)
-    X = np.zeros((N, M, 20))
+    X = np.zeros((N, M, 21))
     j = 0
     for i in idx:
         X[j] = one_hot_encode_aa(seqs[i])
