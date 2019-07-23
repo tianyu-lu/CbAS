@@ -14,7 +14,7 @@ from vae import SimpleSupervisedVAE, SimpleVAE
 
 AA_lower = ['a', 'r', 'n', 'd', 'c', 'q', 'e', 'g', 'h', 'i', 'l', 'k', 'm', 'f', 'p', 's', 't', 'w', 'y', 'v', 'x']
 AA_upper = []
-for m_aa in AA:
+for m_aa in AA_lower:
   AA_upper.append(m_aa.upper())
   
 AA_IDX = {AA[i]:i for i in range(len(AA))}
