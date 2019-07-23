@@ -207,7 +207,7 @@ def one_hot_encode_aa(aa_str, pad=None):
     M = len(aa_str)
     aa_arr = np.zeros((M, 20), dtype=int)
     for i in range(M):
-        aa_arr[i, AA_IDX[aa_str[i]]] = 1
+        aa_arr[i, AA_IDX[aa_str[i].upper()]] = 1
     return aa_arr
 
 def convert_aas_to_idx_array(X_aa):
