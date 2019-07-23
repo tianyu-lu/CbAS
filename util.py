@@ -268,12 +268,12 @@ def partition_data(X, y, percentile=40, train_size=1000, random_state=1, return_
     assert (percentile*0.01 * len(y) >= train_size)
     y_percentile = np.percentile(y, percentile)
     idx = np.where(y < y_percentile)[0]  # y < y_percentile
-#     print("y:")
-#     print(y)
-#     print("y_percentile")
-#     print(y_percentile)
-#     print("idx")
-#     print(idx)
+    print("y:")
+    print(y)
+    print("y_percentile")
+    print(y_percentile)
+    print("idx")
+    print(idx)
     rand_idx = np.random.choice(idx, size=train_size, replace=False)
     X_train = X[rand_idx]
     y_train = y[rand_idx]
