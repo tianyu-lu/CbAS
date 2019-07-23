@@ -291,14 +291,14 @@ def get_experimental_X_y_PET(random_state=1, train_size=150, return_test=False, 
     X,_ = get_gfp_X_y_aa(df, large_only=False, ignore_stops=True)
     y_gt = np.array(df["medianBrightness"])
     if return_test:
-        X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=80, train_size=train_size, random_state=random_state, return_test=return_test)
+        X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=20, train_size=train_size, random_state=random_state, return_test=return_test)
         np.random.seed(random_state)
         gt_var = 0.01
         y_train = gt_train + np.random.randn(*gt_train.shape) * gt_var
         y_test = gt_test + np.random.randn(*gt_test.shape) * gt_var
         return X_train, y_train, gt_train, X_test, y_test, gt_test
     else:
-        X_train, gt_train = partition_data(X, y_gt, percentile=80, train_size=train_size, random_state=random_state, return_test=return_test)
+        X_train, gt_train = partition_data(X, y_gt, percentile=20, train_size=train_size, random_state=random_state, return_test=return_test)
         np.random.seed(random_state)
         gt_var = 0.01
         y_train = gt_train + np.random.randn(*gt_train.shape) * gt_var
@@ -310,14 +310,14 @@ def get_experimental_X_y_Hydrolase(random_state=1, train_size=150, return_test=F
     X,_ = get_gfp_X_y_aa(df, large_only=False, ignore_stops=True)
     y_gt = np.array(df["medianBrightness"])
     if return_test:
-        X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=80, train_size=train_size, random_state=random_state, return_test=return_test)
+        X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=20, train_size=train_size, random_state=random_state, return_test=return_test)
         np.random.seed(random_state)
         gt_var = 0.01
         y_train = gt_train + np.random.randn(*gt_train.shape) * gt_var
         y_test = gt_test + np.random.randn(*gt_test.shape) * gt_var
         return X_train, y_train, gt_train, X_test, y_test, gt_test
     else:
-        X_train, gt_train = partition_data(X, y_gt, percentile=80, train_size=train_size, random_state=random_state, return_test=return_test)
+        X_train, gt_train = partition_data(X, y_gt, percentile=20, train_size=train_size, random_state=random_state, return_test=return_test)
         np.random.seed(random_state)
         gt_var = 0.01
         y_train = gt_train + np.random.randn(*gt_train.shape) * gt_var
