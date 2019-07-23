@@ -12,12 +12,12 @@ from seqtools import SequenceTools
 from vae import SimpleSupervisedVAE, SimpleVAE
 
 
-AA_lower = ['a', 'r', 'n', 'd', 'c', 'q', 'e', 'g', 'h', 'i', 'l', 'k', 'm', 'f', 'p', 's', 't', 'w', 'y', 'v', 'x']
+AA = ['a', 'r', 'n', 'd', 'c', 'q', 'e', 'g', 'h', 'i', 'l', 'k', 'm', 'f', 'p', 's', 't', 'w', 'y', 'v', 'x']
 AA_upper = []
-for m_aa in AA_lower:
+for m_aa in AA:
   AA_upper.append(m_aa.upper())
   
-AA_IDX = {AA[i]:i for i in range(len(AA))}
+AA_IDX = {AA_upper[i]:i for i in range(len(AA_upper))}
 
 BLOSUM = np.array([
 [3.9029,0.6127,0.5883,0.5446,0.8680,0.7568,0.7413,1.0569,0.5694,0.6325,0.6019,0.7754,0.7232,0.4649,0.7541,1.4721,0.9844,0.4165,0.5426,0.9365],
