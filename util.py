@@ -244,7 +244,10 @@ def get_samples(Xt_p):
     for i in range(Xt_p.shape[0]):
         for j in range(Xt_p.shape[1]):
             p = Xt_p[i, j]
-            k = np.random.choice(range(len(p)), p=p)
+            try:
+              k = np.random.choice(range(len(p)), p=p)
+            except ValueError:
+              pass
             Xt_sampled[i, j, k] = 1.
     return Xt_sampled
 
