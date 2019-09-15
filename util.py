@@ -313,7 +313,9 @@ def get_experimental_X_y_PET(random_state=1, train_size=150, return_test=False, 
     """Partition and add noise"""
     df = pd.read_csv('data/PETase_mutations_1_padded.csv')
     X,_ = get_gfp_X_y_aa(df, large_only=False, ignore_stops=True)
-    y_gt = np.array(df["medianBrightness"])
+    y_gt = np.log10(np.array(df["medianBrightness"]))
+    max_cat = np.maximum(y_gt)
+    y_gt = np.multiply(y_gt, 1.0/max_cat)
     if return_test:
         X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=50, train_size=train_size, random_state=random_state, return_test=return_test)
         np.random.seed(random_state)
@@ -332,7 +334,9 @@ def get_experimental_X_y_Hydrolase(random_state=1, train_size=150, return_test=F
     """Partition and add noise"""
     df = pd.read_csv('data/hydrolase_padded.csv')
     X,_ = get_gfp_X_y_aa(df, large_only=False, ignore_stops=True)
-    y_gt = np.array(df["medianBrightness"])
+    y_gt = np.log10(np.array(df["medianBrightness"]))
+    max_cat = np.maximum(y_gt)
+    y_gt = np.multiply(y_gt, 1.0/max_cat)
     if return_test:
         X_train, gt_train, X_test, gt_test = partition_data(X, y_gt, percentile=50, train_size=train_size, random_state=random_state, return_test=return_test)
         np.random.seed(random_state)
